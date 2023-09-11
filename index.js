@@ -27,7 +27,11 @@ const connect = () => {
 }
 
 
-app.listen(5000, async() => {
+app.get("/", (req, res) => {
+    res.send("DressUp Backend")
+})
+
+app.listen(5000, async () => {
     // await redisClient.connect();
     connect();
     console.log("listen at port 5000")
