@@ -3,15 +3,15 @@ import mongoose from "mongoose";
 const orderSchema = new mongoose.Schema({
     userId: {
         type: String,
-        require: true,
+        required: true,
     },
     email: {
         type: String,
-        require: true,
+        required: true,
     },
     products: {
         type: [],
-        require: true,
+        required: true,
     },
 
     address: {
@@ -32,15 +32,15 @@ const orderSchema = new mongoose.Schema({
 
     totalPrice: {
         type: String,
-        require: true,
+        required: true,
     },
     phonenumber: {
         type: String,
-        require: true
+        required: true
     },
     paymentType: {
         type: String,
-        // require: true
+        // required: true
     },
     status: {
         type: String,

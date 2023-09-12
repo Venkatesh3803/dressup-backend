@@ -18,8 +18,8 @@ export const updateOrder = async (req, res) => {
         const order = await orderModel.findById(req.params.id);
         if (!order) return res.status(401).json("you can only update you's profile");
 
-        const updatedOrder = await orderModel.findByIdAndUpdate(order._id, { $set: req.body }, { new: true })
-        return res.status(200).json(updatedOrder);
+        await orderModel.findByIdAndUpdate(order._id, { $set: req.body }, { new: true })
+        return res.status(200).json("updated");
     } catch (error) {
         res.status(500).json({ message: error.message })
     }
