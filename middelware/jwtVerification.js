@@ -24,7 +24,7 @@ export const verifyToken = async (req, res, next) => {
 export const verifyTokenAndAuthorization = (req, res, next) => {
     verifyToken(req, res, () => {
         try {
-            if (req.user.id === req.params.id || req.user.isAdmin) {
+            if (req.user.id === req.body.userId || req.user.isAdmin) {
                 next();
             } else {
                 return res.status(401).json(".....");

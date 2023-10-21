@@ -1,12 +1,12 @@
 import express from "express"
 import dotenv from "dotenv"
 import mongoose from "mongoose";
-import cookieParser from "cookie-parser";
 import cors from "cors"
 import authRoute from "./routes/authRoute.js"
 import userRoute from "./routes/userRoute.js"
 import productRoute from "./routes/productRoute.js"
 import orderRoute from "./routes/orderRoute.js"
+
 // import redisClient from "./redis server/redis.js";
 
 
@@ -16,7 +16,10 @@ const app = express();
 app.use(cors())
 dotenv.config();
 app.use(express.json());
-app.use(cookieParser())
+
+
+
+
 
 const connect = () => {
     try {
