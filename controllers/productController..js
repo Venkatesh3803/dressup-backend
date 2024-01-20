@@ -65,7 +65,7 @@ export const getAllPRoducts = async (req, res) => {
         ...(q.page && { page: q.page }),
     };
     try {
-        const products = await productModel.find(filters).limit(40).skip((page - 1) * limit)
+        const products = await productModel.find(filters).limit(40).skip((page - 1) * limit).sort()
 
         return res.status(200).json({
             products,
