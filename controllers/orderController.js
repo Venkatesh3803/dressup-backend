@@ -42,7 +42,7 @@ export const deleteOrder = async (req, res) => {
 export const getOrder = async (req, res) => {
 
     try {
-        const currOrder = await orderModel.find({ userId: req.params.id });
+        const currOrder = await orderModel.find({ userId: req.params.id }).sort({ createdAt: -1 });
         if (!currOrder) return res.status(401).json("you are not authanticated");
 
         return res.status(200).json(currOrder);
@@ -55,7 +55,7 @@ export const getOrder = async (req, res) => {
 export const getAllOrder = async (req, res) => {
 
     try {
-        const orders = await orderModel.find()
+        const orders = await orderModel.find().sort({ createdAt: -1 })
         return res.status(200).json(orders);
     } catch (error) {
         res.status(500).json({ message: error.message })

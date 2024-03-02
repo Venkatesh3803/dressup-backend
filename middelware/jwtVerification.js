@@ -1,13 +1,12 @@
 import Jwt from "jsonwebtoken";
 
 export const verifyToken = async (req, res, next) => {
-    const authHeader = req.headers.token
+    const authHeader = req.headers.authorization;
     try {
-
         const token = authHeader.split(" ")[1];
         if (!token) return res.status(403).json("token not avaliable");
         Jwt.verify(token, process.env.ACCESS_TOKEN, async (err, user) => {
-            if (err) return res.status(401).json("token is not valid");
+            if (err) return res.status(401).json(err.message);
             req.user = user;
             req.isAdmin = user.isAdmin
             next();

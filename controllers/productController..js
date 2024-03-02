@@ -32,7 +32,7 @@ export const deleteProduct = async (req, res) => {
         const currProduct = await productModel.findById(req.params.id);
         if (!currProduct) return res.status(401).json("you are not anthanticated to do that !");
 
-        await productModel.findByIdAndDelete(currProduct._id)
+        await productModel.findByIdAndDelete(currProduct)
         return res.status(200).json("deleted sucessfully");
     } catch (error) {
         res.status(500).json({ message: error.message })
@@ -65,8 +65,7 @@ export const getAllPRoducts = async (req, res) => {
         ...(q.page && { page: q.page }),
     };
     try {
-        const products = await productModel.find(filters).limit(40).skip((page - 1) * limit).sort()
-
+        const products = await productModel.find(filters).limit(40).skip((page - 1) * limit).sort({ createdAt: -1 })
         return res.status(200).json({
             products,
             currentPage: page
