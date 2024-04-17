@@ -4,10 +4,10 @@ import { deleteUser, getAllUsers, getUser, updateUser } from "../controllers/use
 import { verifyTokenAndAuthorization, verifyTokenAndIsAdmin } from "../middelware/jwtVerification.js"
 
 const route = express.Router();
-route.put("/:id", verifyTokenAndAuthorization, updateUser)
+route.patch("/:id", verifyTokenAndAuthorization, updateUser)
 route.delete("/:id", verifyTokenAndAuthorization, deleteUser)
 route.get("/admin/getallusers",verifyTokenAndIsAdmin, getAllUsers)
-route.get("/:id", verifyTokenAndAuthorization, getUser)
+route.get("/:id", getUser)
 
 
 
