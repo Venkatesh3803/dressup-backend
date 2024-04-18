@@ -3,6 +3,7 @@ import userModel from "../models/userModel.js"
 export const updateUser = async (req, res) => {
 
     try {
+        if (req.user.id !== req.params.id) return res.status(401).json("you are not authanticated");
         const user = await userModel.findById(req.params.id);
         if (!user) return res.status(401).json("you can only update you's profile");
 
@@ -30,11 +31,14 @@ export const deleteUser = async (req, res) => {
 export const getUser = async (req, res) => {
 
     try {
+
+        if (req.user.id !== req.params.id) return res.status(401).json("you are not authanticated");
+
         const currentUser = await userModel.findById(req.params.id);
         if (!currentUser) return res.status(401).json("you are not authanticated");
 
         const { password, ...others } = currentUser._doc
-        
+
         return res.status(200).json(others);
     } catch (error) {
         res.status(500).json({ message: error.message })
